@@ -1,3 +1,3 @@
 # Funky Ducks Bot API
 
-An api for creating and controlling bots that run on (FunkyDucks)[https://funkyducks.repl.co/]
+An api for creating and controlling bots that run on [Funky Ducks](https://funkyducks.repl.co/)
