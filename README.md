@@ -1,3 +1,3 @@
-# Funky-Ducks-Bot
+# Funky Ducks Bot API
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/stackblitz-starters-e8c72q)
+An api for creating and controlling bots that run on (FunkyDucks)[https://funkyducks.repl.co/]
