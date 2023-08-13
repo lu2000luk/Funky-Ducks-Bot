@@ -45,44 +45,56 @@ export function Bot(
   };
 
   this.move = (toX, toY) => {
-    this.socket.emit('movment', {
-      to: {
-        x: toX,
-        y: toY,
-      },
-      user: {
-        name: this.name,
-        object: this.char,
-        token: this.token,
-      },
-      from: {
-        x: this.char.y,
-        y: this.char.x,
-      },
-      room: 'Missing',
-    });
+    try {
+      this.socket.emit('movment', {
+        to: {
+          x: toX,
+          y: toY,
+        },
+        user: {
+          name: this.name,
+          object: this.char,
+          token: this.token,
+        },
+        from: {
+          x: this.char.y,
+          y: this.char.x,
+        },
+        room: 'Missing',
+      });
+    } catch {
+      console.error('Error while moving');
+    }
   };
 
   this.log = () => {
-    this.socket.emit('log', {
-      user: {
-        name: this.name,
-        object: this.char,
-        token: this.token,
-      },
-    });
+    try {
+      this.socket.emit('log', {
+        user: {
+          name: this.name,
+          object: this.char,
+          token: this.token,
+        },
+      });
+    } catch {
+      console.error('Error while logging');
+    }
   };
 
   this.join = this.log;
 
   this.socket.on('reqAuth', function (msg) {
-    this.socket.emit('authSend', {
-      user: {
-        name: this.name,
-        object: this.char,
-        token: this.token,
-      },
-    });
+    try {
+      this.socket.emit('authSend', {
+        user: {
+          name: this.name,
+          object: this.char,
+          token: this.token,
+        },
+      });
+    } catch {
+      console.error('Error while confirming auth');
+    }
   });
 
   this.event = function (eventType, callback) {
@@ -112,11 +124,15 @@ export function Bot(
   };
 
   this.chat = (message) => {
-    this.socket.emit('chat_message', {
-      content: message,
-      user: { name: this.name, object: this.char, token: this.token },
-      allowDiscord: this.discord,
-    });
+    try {
+      this.socket.emit('chat_message', {
+        content: message,
+        user: { name: this.name, object: this.char, token: this.token },
+        allowDiscord: this.discord,
+      });
+    } catch {
+      console.error('Error while chatting');
+    }
   };
 
   this.sendMessage = (msg) => {
